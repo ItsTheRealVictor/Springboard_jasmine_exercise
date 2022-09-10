@@ -21,11 +21,27 @@ function getCurrentUIValues() {
 // Put some default values in the inputs
 // Call a function to calculate the current monthly payment
 function setupIntialValues() {
+  const initialValues = { 
+                          amount: 10000, 
+                          years: 10,
+                          rate: 4.5
+                        }
+  const loanAmount = document.querySelector('#loan-amount')
+  loanAmount.value = initialValues.amount
+
+  const loanYears = document.querySelector('#loan-years')
+  loanYears.value = initialValues.years
+
+  const loanRate = document.querySelector('#loan-rate')
+  loanRate.value = initialValues.rate
 }
 
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
+  const currentUIvalues = getCurrentUIValues()
+  updateMonthly(calculateMonthlyPayment(currentUIvalues))
+
 }
 
 // Given an object of values (a value has amount, years and rate ),
@@ -37,4 +53,6 @@ function calculateMonthlyPayment(values) {
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
 function updateMonthly(monthly) {
+  const monthlyUI = document.querySelector('#monthly-payment')
+  monthlyUI.innerText = `$ ${monthly}`
 }
